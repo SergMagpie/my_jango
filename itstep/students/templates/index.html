@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>дані з моделі Student у вигляді списку</title>
+
+</head>
+
+<body>
+    <h2>дані з моделі Student у вигляді списку</h2>
+    {% if students %}
+    <ul>
+        {% for i in students %}
+        <li><a href="/{{ i.id }}/"> {{ i }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No polls are available.</p>
+    {% endif %}
+
+</body>
+
+</html>
