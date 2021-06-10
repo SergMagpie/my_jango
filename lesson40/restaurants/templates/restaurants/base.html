@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+
+<body>
+    <!-- mainmenu -->
+    {% block mainmenu %}
+    <a href="/add/">Add</a>
+    <a href="/all/">All</a>
+    <a href="/change/">Change</a>
+    <a href="/find/">Find</a>
+    <a href="/view-find/">View find</a>
+    <a href="">Home</a>
+    <!-- end mainmenu -->
+    {% endblock mainmenu %}
+
+    <!-- content -->
+    {% block content %}
+    <!-- end content -->
+    {% endblock content %}
+</body>
+
+</html>
