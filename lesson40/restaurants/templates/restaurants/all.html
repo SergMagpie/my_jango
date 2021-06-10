@@ -1,13 +1,27 @@
-<!DOCTYPE html>
-<html>
+{% extends 'restaurants/base.html' %}
+<!--  -->
+{% block content %}
+<h2>All restaurants</h2>
+<table id="tbl">
 
-<head>
-    <meta charset="UTF-8">
-    <title>All restaurants</title>
-</head>
+    {% for restaurant in restaurants %}
+    <tr>
+        <td> {{restaurant.id}} </td>
+        <td> {{restaurant.name}} </td>
+        <td> {{restaurant.specialization}} </td>
+        <td> {{restaurant.address}} </td>
+        <td> {{restaurant.web_site}} </td>
+        <td> {{restaurant.telephone_number}} </td>
+        <td>
+            <form action="/change/" method="POST">{% csrf_token %}
+                <input type="hidden" name="del_restaurant" value="{{restaurant.id}}">
+                <input type="submit" value="Change">
+            </form>
 
-<body>
-    <h2>All restaurants</h2>
-</body>
+        </td>
+        <td><a href="/delete/"> Delete </a></td>
+    </tr>
+    {% endfor %}
 
-</html>
+</table>
+{% endblock %}

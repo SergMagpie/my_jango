@@ -1,27 +1,46 @@
 from django.shortcuts import render
+from .models import Restaurants
 
 # Create your views here.
 
 
 def add(request):
-    return render(request, 'restaurants/add.html')
+    return render(request,
+                  'restaurants/add.html',
+                  {'title': 'Add'})
 
 
 def all(request):
-    return render(request, 'restaurants/all.html')
+    restaurants = Restaurants.objects.all()
+    return render(request,
+                  'restaurants/all.html',
+                  {
+                      'title': 'All',
+                      'restaurants': restaurants
+                  })
 
 
 def change(request):
-    return render(request, 'restaurants/change.html')
+    print(request.method)
+    print(request.body)
+    return render(request,
+                  'restaurants/change.html',
+                  {'title': 'Change'})
 
 
 def find(request):
-    return render(request, 'restaurants/find.html')
+    return render(request,
+                  'restaurants/find.html',
+                  {'title': 'Find'})
 
 
 def index(request):
-    return render(request, 'restaurants/index.html')
+    return render(request,
+                  'restaurants/index.html',
+                  {'title': 'Restaurants'})
 
 
 def view_find(request):
-    return render(request, 'restaurants/view_find.html')
+    return render(request,
+                  'restaurants/view_find.html',
+                  {'title': 'View find'})
