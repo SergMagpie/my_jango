@@ -8,9 +8,12 @@
 </head>
 
 <body>
-    <h2>Tables</h2>
-
-
+    <h2>Multiplication table by {{number}}</h2>
+    {% for n in numbers %}
+    <ul>
+        <li> {{n}} </li>
+    </ul>
+    {% endfor %}
 </body>
 
 </html>

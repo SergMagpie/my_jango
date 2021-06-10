@@ -19,8 +19,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('today/', views.today),
-    path('multiply-table/', views.table),
+    path('', views.index, name='index'),
+    path('today/', views.today, name='today'),
+    path('multiply-table/', views.table, name='table'),
     path('multiply-table/<int:number>/', views.tables),
 ]
