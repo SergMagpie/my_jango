@@ -4,17 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <title>{{title}}</title>
+    <style>
+        table,
+        td,
+        th {
+            border: 1px solid black;
+            /* width: 300px; */
+        }
+        
+        td {
+            text-align: center
+        }
+        
+        #left td {
+            text-align: left
+        }
+        
+        input[type=submit],
+        select {
+            height: 100%;
+            width: 100%
+        }
+    </style>
 </head>
 
 <body>
     <!-- mainmenu -->
     {% block mainmenu %}
-    <a href="/add/">Add</a>
+    <!-- <a href="/add/">Add</a>
     <a href="/all/">All</a>
     <a href="/change/">Change</a>
     <a href="/find/">Find</a>
     <a href="/view-find/">View find</a>
-    <a href="/">Home</a>
+    <a href="/">Home</a> -->
     <!-- end mainmenu -->
     {% endblock mainmenu %}
 

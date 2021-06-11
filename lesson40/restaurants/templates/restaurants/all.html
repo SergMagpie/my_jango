@@ -3,25 +3,86 @@
 {% block content %}
 <h2>All restaurants</h2>
 <table id="tbl">
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>
+            <table width='100%'>
+                <tr>
+                    <td colspan="2">
+                        Specialization
+                    </td>
+                </tr>
+                <tr>
 
+                    <td colspan="2">
+                        <form action='/' method="GET">
+                            <select name="specialization">
+                            <option>Select</option>
+                            {% for restaurant in restaurants %}
+                            <option value="{{restaurant.specialization}}">{{restaurant.specialization}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="hidden" name="command" value="select">
+                        <input type="submit" value="Select">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/" method="GET">
+                            <input type="hidden" name="command" value="clear">
+                            <input type="submit" value="Clear">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td>Address</td>
+        <td>Web site</td>
+        <td>Telephone number</td>
+        <td>Change</td>
+        <td>Delete</td>
+    </tr>
     {% for restaurant in restaurants %}
     <tr>
-        <td> {{restaurant.id}} </td>
-        <td> {{restaurant.name}} </td>
-        <td> {{restaurant.specialization}} </td>
-        <td> {{restaurant.address}} </td>
-        <td> {{restaurant.web_site}} </td>
-        <td> {{restaurant.telephone_number}} </td>
-        <td>
-            <form action="/change/" method="POST">{% csrf_token %}
-                <input type="hidden" name="del_restaurant" value="{{restaurant.id}}">
+        <form action="/" method="POST">{% csrf_token %}
+            <td> {{restaurant.id}} </td>
+            <td><input type="text" name="name" value="{{restaurant.name}}"></td>
+            <td><input type="text" name="specialization" value="{{restaurant.specialization}}"></td>
+            <td><input type="text" name="address" value="{{restaurant.address}}"></td>
+            <td><input type="text" name="web_site" value="{{restaurant.web_site}}"></td>
+            <td><input type="text" name="telephone_number" value="{{restaurant.telephone_number}}"></td>
+            <td>
+                <input type="hidden" name="command" value="change_restaurant">
+                <input type="hidden" name="restaurant_id" value="{{restaurant.id}}">
                 <input type="submit" value="Change">
+
+            </td>
+        </form>
+        <td>
+            <form action="/" method="POST">{% csrf_token %}
+                <input type="hidden" name="command" value="delete">
+                <input type="hidden" name="restaurant_id" value="{{restaurant.id}}">
+                <input type="submit" onclick="return confirm('Are you sure?')" value="Delete">
             </form>
 
         </td>
-        <td><a href="/delete/"> Delete </a></td>
     </tr>
     {% endfor %}
-
+    <tr>
+        <form action="/" method="POST">{% csrf_token %}
+            <input type="hidden" name="command" value="add">
+            <td>New</td>
+            <td><input type="text" name="name"></td>
+            <td><input type="text" name="specialization"></td>
+            <td><input type="text" name="address"></td>
+            <td><input type="text" name="web_site"></td>
+            <td><input type="text" name="telephone_number"></td>
+            <td colspan="2"><input type="submit" value="Add new restaurant"></td>
+        </form>
+    </tr>
 </table>
 {% endblock %}
